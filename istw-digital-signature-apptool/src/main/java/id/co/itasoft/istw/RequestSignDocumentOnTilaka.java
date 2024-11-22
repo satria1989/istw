@@ -44,7 +44,7 @@ import org.json.JSONObject;
 
 public class RequestSignDocumentOnTilaka extends DefaultApplicationPlugin {
 
-    public static final String pluginName = "ISTW - DS - ReqSign Doc on Tilaka";
+    public String pluginName = "ISTW - DS - ReqSign Doc on Tilaka";
 
     @Override
     public Object execute(Map properties) {
