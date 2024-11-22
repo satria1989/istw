@@ -1,0 +1,569 @@
+[
+    {
+        title: 'Upload Final PDF File To Minio',
+        properties: [
+        {
+        "name": "minioUrl",
+        "label": "Minio URL",
+        "type": "textfield",
+        "required": "True"
+        },
+        {
+            "name": "minioKey",
+            "label": "Minio Key",
+            "type": "textfield",
+            "required": "True"
+        },
+        {
+            "name": "minioUser",
+            "label": "Minio User",
+            "type": "textfield",
+            "required": "True"
+        },
+        {
+            "name": "minioBucket",
+            "label": "Minio Bucket",
+            "type": "textfield",
+            "required": "True"
+        },
+        {
+            "name": "formDefId",
+            "label": "@@datalist.downloadPdfStamping.labelValue.form@@",
+            "description": "@@datalist.downloadPdfStamping.labelValue.form.desc@@",
+            "type": "selectbox",
+            "options_ajax": "[CONTEXT_PATH]/web/json/console/app[APP_PATH]/forms/options",
+            "value": "@@datalist.downloadPdfStamping.labelValue@@",
+            "required": "True"
+        },
+        {
+            "name": "attachmentField",
+            "label": "@@datalist.downloadPdfStamping.attachmentField@@",
+            "type": "selectbox",
+            "options_ajax_on_change": "formDefId",
+            "options_ajax": "[CONTEXT_PATH]/web/json/console/app[APP_PATH]/form/columns/options",
+            "required": "True"
+        },
+        {
+            "name": "appPrefix",
+            "label": "@@datalist.downloadPdfStamping.appPrefix@@",
+            "type": "textfield",
+            "value": "document",
+            "required": "True",
+            "description": "@@datalist.downloadPdfStamping.appPrefix.desc@@"
+        }, {
+            "name": "debugMode",
+            "label": "Debug Mode",
+            "description": "Are ou need to debug in Log Util?",
+            "type": "checkbox",
+            "options": [{
+                    "value": "true",
+                    "label": ""
+                }]
+        }]
+    },
+    {
+    "title": "@@datalist.downloadPdfStamping.signature@@",
+            "properties": [
+            {
+            "label" : "@@datalist.downloadPdfStamping.information@@",
+                    "type" : "header",
+                    "description" : "@@datalist.downloadPdfStamping.signature.desc@@"
+            },
+            {
+            "name": "signatureStamping",
+                    "label": "@@datalist.downloadPdfStamping.signature@@",
+                    "type": "checkbox",
+                    "options": [
+                    {
+                    "value": "true",
+                            "label": ""
+                    }
+                    ]
+            },
+            {
+            "name": "signatureStampingCanvasWidth",
+                    "label": "@@datalist.downloadPdfStamping.signatureStampingCanvasWidth@@",
+                    "type": "textfield"
+            },
+            {
+            "name": "signatureStampingCanvasHeight",
+                    "label": "@@datalist.downloadPdfStamping.signatureStampingCanvasHeight@@",
+                    "type": "textfield"
+            },
+            {
+            "name": "stylishFont",
+                    "label": "@@datalist.downloadPdfStamping.stylishFont@@",
+                    "type": "selectbox",
+                    "options": %s
+            },
+            {
+            "name": "stylishFontSize",
+                    "label": "@@datalist.downloadPdfStamping.stylishFontSize@@",
+                    "type": "textfield"
+            }
+            ]
+    },
+    {
+    "title": "@@datalist.downloadPdfStamping.qr@@",
+            "properties": [
+            {
+            "label" : "@@datalist.downloadPdfStamping.information@@",
+                    "type" : "header",
+                    "description" : "@@datalist.downloadPdfStamping.qr.desc@@"
+            },
+            {
+            "name": "qrCodeStamping",
+                    "label": "@@datalist.downloadPdfStamping.qr@@",
+                    "type": "checkbox",
+                    "options": [
+                    {
+                    "value": "true",
+                            "label": ""
+                    }
+                    ]
+            },
+            {
+            "name": "signatureStampingCanvasWidth",
+                    "label": "@@datalist.downloadPdfStamping.signatureStampingCanvasWidth@@",
+                    "type": "textfield"
+            },
+            {
+            "name": "signatureStampingCanvasHeight",
+                    "label": "@@datalist.downloadPdfStamping.signatureStampingCanvasHeight@@",
+                    "type": "textfield"
+            },
+            {
+            "name": "stylishFont",
+                    "label": "@@datalist.downloadPdfStamping.stylishFont@@",
+                    "type": "selectbox"
+            },
+            {
+            "name": "stylishFontSize",
+                    "label": "@@datalist.downloadPdfStamping.stylishFontSize@@",
+                    "type": "textfield"
+            }
+            ]
+    },
+    {
+    "title": "@@datalist.downloadPdfStamping.trail@@",
+            "properties": [
+            {
+            "name": "documentTrail",
+                    "label": "@@datalist.downloadPdfStamping.trail@@",
+                    "type": "checkbox",
+                    "options": [
+                    {
+                    "value": "true",
+                            "label": ""
+                    }
+                    ]
+            },
+            {
+            "name": "trailFormDefId",
+                    "label": "@@datalist.downloadPdfStamping.trailFormDefId@@",
+                    "type": "selectbox",
+                    "options_ajax": "[CONTEXT_PATH]/web/json/console/app[APP_PATH]/forms/options",
+                    "required": "True",
+                    "control_field": "documentTrail",
+                    "control_value": "true",
+                    "control_use_regex": "false"
+            },
+            {
+            "name": "trailHeaderFormDefId",
+                    "label": "@@datalist.downloadPdfStamping.trailHeaderFormDefId@@",
+                    "type": "selectbox",
+                    "options_ajax": "[CONTEXT_PATH]/web/json/console/app[APP_PATH]/forms/options",
+                    "control_field": "documentTrail",
+                    "control_value": "true",
+                    "control_use_regex": "false"
+            },
+            {
+            "name": "trailFormatting",
+                    "label": "@@userviewmenu.bootstraptheme.customCss@@",
+                    "type" : "codeeditor",
+                    "required" : "True",
+                    "control_field": "documentTrail",
+                    "control_value": "true",
+                    "control_use_regex": "false",
+                    "mode" : "css"
+            }
+
+            ]
+    },
+    {
+    "title": "@@datalist.downloadPdfStamping.header@@",
+            "properties": [
+            {
+            "name": "headerStamping",
+                    "label": "@@datalist.downloadPdfStamping.header@@",
+                    "type": "checkbox",
+                    "options": [
+                    {
+                    "value": "true",
+                            "label": ""
+                    }
+                    ]
+            },
+            {
+            "name": "headerWatermark",
+                    "label": "@@datalist.downloadPdfStamping.watermark@@",
+                    "type": "textarea",
+                    "value" : "<----Sample confidential message on the header---->",
+                    "control_field": "headerStamping",
+                    "control_value": "true",
+                    "control_use_regex": "false",
+                    "required" : "True"
+            },
+            {
+            "name": "headerFontFamily",
+                    "label": "@@datalist.downloadPdfStamping.fontFamily@@",
+                    "type": "selectbox",
+                    "control_field": "headerStamping",
+                    "value" : "1",
+                    "control_value": "true",
+                    "control_use_regex": "false",
+                    "options" : [{
+                    "value" : "-1",
+                            "label" : "Undefined"
+                    },
+                    {
+                    "value" : "0",
+                            "label" : "Courier"
+                    },
+                    {
+                    "value" : "1",
+                            "label" : "Helvetica"
+                    },
+                    {
+                    "value" : "2",
+                            "label" : "Times Roman"
+                    },
+                    {
+                    "value" : "3",
+                            "label" : "Symbol"
+                    },
+                    {
+                    "value" : "4",
+                            "label" : "Zapfdingbats"
+                    }
+                    ],
+                    "required" : "True"
+            },
+            {
+            "name": "headerFontSize",
+                    "label": "@@datalist.downloadPdfStamping.fontSize@@",
+                    "description": "@@datalist.downloadPdfStamping.fontSize.desc@@",
+                    "type": "textfield",
+                    "value" : "15",
+                    "control_field": "headerStamping",
+                    "control_value": "true",
+                    "control_use_regex": "false",
+                    "required" : "True"
+            },
+            {
+            "name": "headerFontStyle",
+                    "label": "@@datalist.downloadPdfStamping.fontStyle@@",
+                    "type": "selectbox",
+                    "control_field": "headerStamping",
+                    "control_value": "true",
+                    "control_use_regex": "false",
+                    "options" : [{
+                    "value" : "0",
+                            "label" : "Normal"
+                    },
+                    {
+                    "value" : "1",
+                            "label" : "Bold"
+                    },
+                    {
+                    "value" : "3",
+                            "label" : "Bold Italic"
+                    },
+                    {
+                    "value" : "2",
+                            "label" : "Italic"
+                    },
+                    {
+                    "value" : "8",
+                            "label" : "Strike Thru"
+                    },
+                    {
+                    "value" : "4",
+                            "label" : "Underline"
+                    }],
+                    "required" : "True"
+            },
+            {
+            "name": "headerFontColor",
+                    "label": "@@datalist.downloadPdfStamping.fontColor@@",
+                    "type": "color",
+                    "value" : "#999999",
+                    "control_field": "headerStamping",
+                    "control_value": "true",
+                    "control_use_regex": "false",
+                    "required" : "True"
+            },
+            {
+            "name": "headerFontOpacity",
+                    "label": "@@datalist.downloadPdfStamping.fontOpacity@@",
+                    "description": "@@datalist.downloadPdfStamping.fontOpacity.desc@@",
+                    "type": "textfield",
+                    "value" : "0.5",
+                    "control_field": "headerStamping",
+                    "control_value": "true",
+                    "control_use_regex": "false",
+                    "required" : "True"
+            }]
+    },
+    {
+    "title": "@@datalist.downloadPdfStamping.body@@",
+            "properties": [
+            {   "name": "bodyStamping",
+                    "label": "@@datalist.downloadPdfStamping.body@@",
+                    "type": "checkbox",
+                    "options": [
+                    {
+                    "value": "true",
+                            "label": ""
+                    }
+                    ]
+            },
+            {
+            "name": "bodyWatermark",
+                    "label": "@@datalist.downloadPdfStamping.watermark@@",
+                    "type": "textarea",
+                    "value" : "<----Sample confidential message on the body---->",
+                    "control_field": "bodyStamping",
+                    "control_value": "true",
+                    "control_use_regex": "false",
+                    "required" : "True"
+            },
+            {
+            "name": "bodyFontFamily",
+                    "label": "@@datalist.downloadPdfStamping.fontFamily@@",
+                    "type": "selectbox",
+                    "value" : "1",
+                    "control_field": "bodyStamping",
+                    "control_value": "true",
+                    "control_use_regex": "false",
+                    "options" : [{
+                    "value" : "-1",
+                            "label" : "Undefined"
+                    },
+                    {
+                    "value" : "0",
+                            "label" : "Courier"
+                    },
+                    {
+                    "value" : "1",
+                            "label" : "Helvetica"
+                    },
+                    {
+                    "value" : "2",
+                            "label" : "Times Roman"
+                    },
+                    {
+                    "value" : "3",
+                            "label" : "Symbol"
+                    },
+                    {
+                    "value" : "4",
+                            "label" : "Zapfdingbats"
+                    }
+                    ],
+                    "required" : "True"
+            },
+            {
+            "name": "bodyFontSize",
+                    "label": "@@datalist.downloadPdfStamping.fontSize@@",
+                    "description": "@@datalist.downloadPdfStamping.fontSize.desc@@",
+                    "type": "textfield",
+                    "value" : "20",
+                    "control_field": "bodyStamping",
+                    "control_value": "true",
+                    "control_use_regex": "false",
+                    "required" : "True"
+            },
+            {
+            "name": "bodyFontStyle",
+                    "label": "@@datalist.downloadPdfStamping.fontStyle@@",
+                    "type": "selectbox",
+                    "value" : "1",
+                    "control_field": "bodyStamping",
+                    "control_value": "true",
+                    "control_use_regex": "false",
+                    "options" : [{
+                    "value" : "0",
+                            "label" : "Normal"
+                    },
+                    {
+                    "value" : "1",
+                            "label" : "Bold"
+                    },
+                    {
+                    "value" : "3",
+                            "label" : "Bold Italic"
+                    },
+                    {
+                    "value" : "2",
+                            "label" : "Italic"
+                    },
+                    {
+                    "value" : "8",
+                            "label" : "Strike Thru"
+                    },
+                    {
+                    "value" : "4",
+                            "label" : "Underline"
+                    }],
+                    "required" : "True"
+            },
+            {
+            "name": "bodyFontColor",
+                    "label": "@@datalist.downloadPdfStamping.fontColor@@",
+                    "type": "color",
+                    "value" : "#D1D2D2",
+                    "control_field": "bodyStamping",
+                    "control_value": "true",
+                    "control_use_regex": "false",
+                    "required" : "True"
+            },
+            {
+            "name": "bodyFontOpacity",
+                    "label": "@@datalist.downloadPdfStamping.fontOpacity@@",
+                    "description": "@@datalist.downloadPdfStamping.fontOpacity.desc@@",
+                    "type": "textfield",
+                    "value" : "0.5",
+                    "control_field": "bodyStamping",
+                    "control_value": "true",
+                    "control_use_regex": "false",
+                    "required" : "True"
+            }]
+    },
+    {
+    "title": "@@datalist.downloadPdfStamping.footer@@",
+            "properties": [
+            {
+            "name": "footerStamping",
+                    "label": "@@datalist.downloadPdfStamping.footer@@",
+                    "type": "checkbox",
+                    "options": [
+                    {
+                    "value": "true",
+                            "label": ""
+                    }
+                    ]
+            },
+            {
+            "name": "footerWatermark",
+                    "label": "@@datalist.downloadPdfStamping.watermark@@",
+                    "type": "textarea",
+                    "value" : "<----Sample confidential message on the footer---->",
+                    "control_field": "footerStamping",
+                    "control_value": "true",
+                    "control_use_regex": "false",
+                    "required" : "True"
+            },
+            {
+            "name": "footerFontFamily",
+                    "label": "@@datalist.downloadPdfStamping.fontFamily@@",
+                    "type": "selectbox",
+                    "value" : "1",
+                    "control_field": "footerStamping",
+                    "control_value": "true",
+                    "control_use_regex": "false",
+                    "options" : [{
+                    "value" : "-1",
+                            "label" : "Undefined"
+                    },
+                    {
+                    "value" : "0",
+                            "label" : "Courier"
+                    },
+                    {
+                    "value" : "1",
+                            "label" : "Helvetica"
+                    },
+                    {
+                    "value" : "2",
+                            "label" : "Times Roman"
+                    },
+                    {
+                    "value" : "3",
+                            "label" : "Symbol"
+                    },
+                    {
+                    "value" : "4",
+                            "label" : "Zapfdingbats"
+                    }
+                    ],
+                    "required" : "True"
+            },
+            {
+            "name": "footerFontSize",
+                    "label": "@@datalist.downloadPdfStamping.fontSize@@",
+                    "description": "@@datalist.downloadPdfStamping.fontSize.desc@@",
+                    "type": "textfield",
+                    "value" : "15",
+                    "control_field": "footerStamping",
+                    "control_value": "true",
+                    "control_use_regex": "false",
+                    "required" : "True"
+            },
+            {
+            "name": "footerFontStyle",
+                    "label": "@@datalist.downloadPdfStamping.fontStyle@@",
+                    "type": "selectbox",
+                    "control_field": "footerStamping",
+                    "control_value": "true",
+                    "control_use_regex": "false",
+                    "options" : [{
+                    "value" : "0",
+                            "label" : "Normal"
+                    },
+                    {
+                    "value" : "1",
+                            "label" : "Bold"
+                    },
+                    {
+                    "value" : "3",
+                            "label" : "Bold Italic"
+                    },
+                    {
+                    "value" : "2",
+                            "label" : "Italic"
+                    },
+                    {
+                    "value" : "8",
+                            "label" : "Strike Thru"
+                    },
+                    {
+                    "value" : "4",
+                            "label" : "Underline"
+                    }],
+                    "required" : "True"
+            },
+            {
+            "name": "footerFontColor",
+                    "label": "@@datalist.downloadPdfStamping.fontColor@@",
+                    "type": "color",
+                    "value" : "#999999",
+                    "control_field": "footerStamping",
+                    "control_value": "true",
+                    "control_use_regex": "false",
+                    "required" : "True"
+            },
+            {
+            "name": "footerFontOpacity",
+                    "label": "@@datalist.downloadPdfStamping.fontOpacity@@",
+                    "description": "@@datalist.downloadPdfStamping.fontOpacity.desc@@",
+                    "type": "textfield",
+                    "value" : "0.5",
+                    "control_field": "footerStamping",
+                    "control_value": "true",
+                    "control_use_regex": "false",
+                    "required" : "True"
+            }
+            ]
+    }
+    ]

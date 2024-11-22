@@ -1,0 +1,39 @@
+[
+    {
+        title: 'Upload My Sign To Minio',
+        properties: [
+        {
+        "name": "minioUrl",
+        "label": "Minio URL",
+        "type": "textfield",
+        "required": "True"
+        },
+        {
+            "name": "minioKey",
+            "label": "Minio Key",
+            "type": "textfield",
+            "required": "True"
+        },
+        {
+            "name": "minioUser",
+            "label": "Minio User",
+            "type": "textfield",
+            "required": "True"
+        },
+        {
+            "name": "minioBucket",
+            "label": "Minio Bucket",
+            "type": "textfield",
+            "required": "True"
+        }, {
+            "name": "debugMode",
+            "label": "Debug Mode",
+            "description": "Are ou need to debug in Log Util?",
+            "type": "checkbox",
+            "options": [{
+                    "value": "true",
+                    "label": ""
+                }]
+        }]
+    }
+    ]
